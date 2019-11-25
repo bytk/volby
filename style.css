@@ -1,0 +1,490 @@
+/* zakladne pravidla */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans";
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  transition: 0.33s all ease-in-out;
+}
+
+.check {
+  animation: fade 2s;
+  width: 30px;
+  height: 30px;
+  display: inline-table;
+  position: absolute;
+  z-index: 100;
+  margin: 20px 0 0 70px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAB4FBMVEU3vYk3voo4voo3voo4vor///83voo3voo4voo3voo3voo4voo3voo3voo3voo4voo3vor///83vor///////83voo3voo3voo3voo3voo4voo4voo3voo3voo4voo3voo3voo4voo4voo3vYk3voo3voo4voo4voo3voo4voo4voo3voo3voo4voo3voo4voo4voo3voo4voo3voo4voo3vYk3voo3voo3voo3voo3voo3voo4voo3voo4voo4voo4voo4voo3vYk4voo3voo3vYk3voo4voo3vor///84voo3voo3voo4voo4voo4voo3voo3voo4voo4voo3vor+//43vor4/fr///84voo3vopTxpk4voo3vory+vg3voo3voo3voo4voqG17c3voo4voo3voo4voo3vYk3voo4voo6v4s8v4w8v40/wI9AwI9EwpFJw5RKw5RKxJRPxZdQxZdZyZxhyqFiy6Fsz6dv0Kl20a591LGM2bqN2bqP2byW3MGX3MGY3MGc3sSf38ak4Mik4cit5M3E69vE69zF7NzH7N7I7N7K7d/N7uHQ7+PV8ebW8ebZ8und8+ve9Ovh9e3i9e7k9e/l9u/q9/Pw+fb1/Pn4/fv7/v3+//7///+sMsS3AAAAaHRSTlMAAAABAQQFCQsMDw8UFhkZGhweJCUsMDU3Pz9ARUdHSExNUldbXV5jZmZobG5vc3d4e3t9foODh4qcnqCrrK6xtba7u8TFysrOz9HS1dbX2tvc3N3e3uDh5Ofo6ezz8/X3+fr7/f3+/tlOe1AAAAHVSURBVHgBRZMFv1MxDMWTXmA4Y8MZ7u4MYbg7w91hKZMBw90Z7sKA+1VJk5R33st2m39PutxfCg7ROfkYOm/FpvLODcun5RyKHDrgCDgzo+yJ9P/c2tHMBDAG/h6zVxCHanUOxAUcmCy6KEnhuu1YQU4I1mSpZBR7jvB8enx3xbiY8xVS/j/82YMD5exRoXI82aj399J0fx7BZfbFtFS12vdT1qFBgDMFmtnkmQZtgWRP9IpVnx8qPZGHYZ4V8yKiR0q/H01gvtfCl17c9PabHyv90aLBUBJfpfYy7dzWBp4o/doimgib5U00XnPiz92Anyv9cpl3LoTd0shbSf19QPRM6ecrxFoCOwKlO781+9ToR/YyKMJ6wf5WR/NGm9rtbFhm3d741UU/NO0NjoMpAlnXf0b6rhEo5y/0hex5b/1e+2a0TqSWjQ5wDe/U9dVPgb5hr1WczngEY+W++T5N2zVe6d/hDALgSuGyof6qXSOK7skyqQOOyEpUrVKcDb+qG2IYyJGniHSYBNnAbettk+oKx81gNMTW/o4ltwSH7LIBNFWo1Ad1kAPGnsWTatMKByawU7Cz69JvwXZzn1k3qYdevFAcgls2ZcfOmjtn6vBeGOXwH6ofNtnFwSEoAAAAAElFTkSuQmCC);
+}
+
+/* pravidla pre animacie */
+@keyframes overall_bar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 45%;
+  }
+}
+@keyframes fade_left {
+  from {
+    opacity: 0;
+    width: 45%;
+    background: transparent;
+  }
+  to {
+    opacity: 1;
+    width: 100%;
+    background: #555555;
+  }
+}
+@keyframes fade_right {
+  from {
+    opacity: 0;
+    width: 45%;
+    background: transparent;
+  }
+  to {
+    opacity: 1;
+    width: 100%;
+    background: #40c18a;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* animacia pre odpocet percent scitanych hlasov */
+section.overall span:before {
+  animation: overall_bar 5s;
+  animation-fill-mode: forwards;
+  animation-delay: 3s;
+  animation-timing-function: ease-in-out;
+}
+
+/* mobile first pravidla */
+@media only screen and (max-width: 620px) {
+  main {
+    font-size: 14px;
+    margin: 0 auto;
+    width: calc(100% - 15px);
+    display: table;
+    text-align: center;
+  }
+
+  .cut {
+    animation: fade 4s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    height: 67px;
+    margin-top: 30px;
+    display: table;
+    position: absolute;
+    max-width: 500px;
+    width: 50%;
+    border-right: 1px white solid;
+    z-index: 10;
+  }
+  .cut:before {
+    content: "50%";
+    position: relative;
+    top: -24px;
+    float: right;
+    left: 15px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  .check {
+    margin: -8px 0px 0 -26px;
+    transform: scale(0.7);
+  }
+
+  section.overall {
+    font-size: 11px;
+    width: 245px;
+    display: inline-block;
+    color: #7a7a7a;
+    padding-top: 42px;
+  }
+  section.overall span {
+    display: inline-flex;
+    width: 245px;
+    height: 4px;
+    border-radius: 2px;
+    background: #e0e0e0;
+  }
+  section.overall span:before {
+    content: "";
+    background: #40c18a;
+    display: flex;
+    position: relative;
+    float: left;
+    border-radius: 2px;
+  }
+
+  header h2 {
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: 900;
+    margin: 30px auto 40px auto;
+  }
+
+  section.info {
+    line-height: 20px;
+    color: #717171;
+  }
+  section.info strong {
+    display: block;
+  }
+
+  section.result {
+    padding-top: 40px;
+    display: table;
+    width: 100%;
+  }
+  section.result img {
+    font-size: 11px;
+    letter-spacing: -1px;
+    background: #b6b5aa;
+    color: #141414;
+    text-align: left;
+  }
+  section.result img::first-line {
+    font-weight: bold;
+  }
+  section.result .left {
+    text-align: left;
+    float: left;
+  }
+  section.result .left .opponent {
+    font-size: 14px;
+    color: #313131;
+    font-weight: bold;
+    line-height: 14px;
+    padding: 0 0 2px 5px;
+    display: block;
+    width: 100%;
+  }
+  section.result .left .opponent small {
+    font-size: 11px;
+    color: #7a7a7a;
+    display: block;
+    font-weight: normal;
+  }
+  section.result .left img {
+    width: 55px;
+    height: 55px;
+    display: inline-block;
+    float: left;
+    border-radius: 0 50% 50% 0;
+    transition: initial !important;
+    position: relative;
+    z-index: 10;
+  }
+  section.result .left .score {
+    animation: fade_left 2s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    height: 55px;
+    display: block;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 15px;
+    padding: 15px 0 0 60px;
+    box-sizing: border-box;
+  }
+  section.result .left .score span {
+    animation: fade 2s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    opacity: 0;
+  }
+  section.result .left .score span small {
+    animation: fade 2s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    opacity: 0;
+    font-size: 11px;
+    display: block;
+    font-weight: normal;
+    letter-spacing: -0.5px;
+  }
+  section.result .right {
+    text-align: right;
+    float: right;
+  }
+  section.result .right .opponent {
+    font-size: 14px;
+    color: #313131;
+    font-weight: bold;
+    line-height: 14px;
+    padding: 0 5px 2px 0;
+    display: block;
+    width: 100%;
+  }
+  section.result .right .opponent small {
+    font-size: 11px;
+    color: #7a7a7a;
+    display: block;
+    font-weight: normal;
+  }
+  section.result .right img {
+    width: 55px;
+    height: 55px;
+    display: inline-block;
+    float: right;
+    border-radius: 50% 0 0 50%;
+    position: relative;
+    z-index: 10;
+  }
+  section.result .right .score {
+    animation: fade_right 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 4s;
+    animation-timing-function: ease-in-out;
+    height: 55px;
+    display: block;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 15px;
+    padding: 15px 60px 0 0px;
+    box-sizing: border-box;
+  }
+  section.result .right .score span {
+    animation: fade 2s;
+    animation-delay: 5.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    opacity: 0;
+  }
+  section.result .right .score span small {
+    animation: fade 2s;
+    animation-delay: 5.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    opacity: 0;
+    font-size: 11px;
+    display: block;
+    font-weight: normal;
+    letter-spacing: -0.5px;
+  }
+}
+/* pravidla pre vsetko ostatne */
+@media only screen and (min-width: 620px) {
+  main {
+    font-size: 14px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: table;
+    text-align: center;
+  }
+
+  section.overall {
+    font-size: 11px;
+    width: 245px;
+    display: inline-block;
+    color: #7a7a7a;
+    padding-top: 40px;
+    line-height: 22px;
+  }
+  section.overall span {
+    display: inline-flex;
+    width: 245px;
+    height: 4px;
+    border-radius: 2px;
+    background: #e0e0e0;
+  }
+  section.overall span:before {
+    content: "";
+    background: #40c18a;
+    display: flex;
+    position: relative;
+    float: left;
+    border-radius: 2px;
+  }
+
+  header h2 {
+    font-size: 32px;
+    font-weight: 900;
+    margin: 16px auto 19px auto;
+  }
+
+  section.info {
+    line-height: 20px;
+    color: #717171;
+  }
+  section.info strong {
+    display: inline-block;
+  }
+
+  section.result {
+    padding-top: 38px;
+    display: inline-table;
+    width: 100%;
+  }
+  section.result .cut {
+    animation: fade 4s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    height: 67px;
+    margin-top: 45px;
+    display: table;
+    position: absolute;
+    max-width: 500px;
+    width: 50%;
+    border-right: 1px white solid;
+    z-index: 10;
+  }
+  section.result .cut:before {
+    content: "50%";
+    position: relative;
+    top: -24px;
+    float: right;
+    left: 15px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+  section.result .opponent {
+    font-size: 20px;
+    color: #313131;
+    font-weight: bold;
+    line-height: 11px;
+    display: inline-block;
+    margin: 0 0 12px 0;
+  }
+  section.result .opponent small {
+    font-size: 11px;
+    color: #7a7a7a;
+    display: block;
+    font-weight: normal;
+    padding: 11px 0 0 1px;
+  }
+  section.result img {
+    width: 105px;
+    height: 105px;
+    display: inline-block;
+    z-index: 10;
+    position: relative;
+    font-size: 12px;
+    letter-spacing: -1px;
+    background: #b6b5aa;
+    color: #141414;
+  }
+  section.result img::first-line {
+    font-weight: bold;
+    padding-top: 20px;
+  }
+  section.result .score {
+    height: 67px;
+    display: block;
+    font-size: 26px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 23px;
+    box-sizing: border-box;
+  }
+  section.result .score small {
+    font-size: 11px;
+    display: block;
+    font-weight: normal;
+  }
+  section.result .left {
+    text-align: left;
+    float: left;
+    position: relative;
+    z-index: 100;
+  }
+  section.result .left .opponent {
+    padding: 0 0 0 10px;
+  }
+  section.result .left img {
+    animation: fade 3s;
+    animation-fill-mode: forwards;
+    float: left;
+    border-radius: 0 50% 50% 0;
+    margin: 27px 0 0 0;
+  }
+  section.result .left .score {
+    animation: fade_left 2s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    padding: 13px 0 0 100px;
+    margin: 0px 0 0 19px;
+    z-index: 0;
+    position: relative;
+    width: 100%;
+  }
+  section.result .left .score span {
+    animation: fade 2s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    opacity: 0;
+  }
+  section.result .left .score span small {
+    animation: fade 2s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    opacity: 0;
+  }
+  section.result .right {
+    text-align: right;
+    float: right;
+  }
+  section.result .right .opponent {
+    padding: 0 10px 0 0;
+  }
+  section.result .right img {
+    animation: fade 4s;
+    float: right;
+    border-radius: 50% 0 0 50%;
+    margin: 24px 0 0 0;
+  }
+  section.result .right .score {
+    animation: fade_right 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 4s;
+    animation-timing-function: ease-in-out;
+    opacity: 0;
+    padding: 13px 120px 0 0px;
+    z-index: 0;
+  }
+  section.result .right .score span {
+    animation: fade 2s;
+    animation-delay: 5.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    opacity: 0;
+  }
+  section.result .right .score span small {
+    animation: fade 2s;
+    animation-delay: 5.2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    opacity: 0;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
